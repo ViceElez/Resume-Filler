@@ -3,11 +3,20 @@ from docx import Document
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
+from groq import Groq
+from dotenv import load_dotenv
+from pathlib import Path
 
 app = Flask(__name__)
 CORS(app)
-client = ollama.Client()
-model = "llama2"
+env_path = Path(__file__).resolve().parent.parent / '.env'
+load_dotenv(dotenv_path=env_path)
+api_key = os.getenv("API_KEY")
+model="llama-3.3-70b-versatile"
+
+client = Groq(
+    api_key=api_key
+)
 
 @app.route('/upload', methods=['POST'])
 def upload_files():
@@ -39,12 +48,17 @@ def upload_files():
         Output:
         """
 
-    response = client.generate(
-        model=model,
-        prompt=prompt
-    )
+    response = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": prompt,
+        }
+    ],
+    model=model,
+)
 
-    return jsonify({"result": response.response})
+    return jsonify({"result": response.choices[0].message.content})
 
 if __name__ == '__main__':
     app.run(debug=True)
