@@ -22,7 +22,7 @@ chat_completion = client.chat.completions.create(
 )
 
 print(chat_completion.choices[0].message.content)
-print("testing")
+
 
 
 
