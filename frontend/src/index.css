@@ -1,0 +1,16 @@
+@import url('./styles/HomePageStyles.css');
+@import url('./styles/NavigationBarStyle.css');
+@import url('./styles/HowItWorksSectionStyle.css');
+@import url('./styles/AboutSectionStyle.css');
+@import url('./styles/ContactInfoSectionStyle.css');
+:root{
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    scroll-behavior: smooth;
+}

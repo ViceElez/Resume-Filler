@@ -1,0 +1,17 @@
+.contact-info-section{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, rgba(236, 223, 223, 0.7), rgba(244, 240, 240, 0.7));
+    color: #222; 
+    text-align: center;
+}
+.contact-info-section h2{
+    margin-top: 5%;
+    font-size: 24px;
+    margin-bottom: 20px;   
+}
+.contact-info-section span{
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 5px;
+}
