@@ -30,7 +30,6 @@ def upload_files():
 
     prompt=f""" Rules:
         - Only fill fields if the field name exactly matches a key in userResume.
-        - NEVER autocomplete, guess, or infer values for partial matches.
         - If a field does not exist in userResume, write exactly: "No relative data for this".
         - Keep the formatting exactly as in companyResume.
         - Do NOT add extra fields, explanations, or text.
