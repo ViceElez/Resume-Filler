@@ -1,4 +1,4 @@
-import ollama
+from time import time
 from docx import Document
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -17,6 +17,9 @@ model="llama-3.3-70b-versatile"
 client = Groq(
     api_key=api_key
 )
+calls = []
+max_calls_per_minute = 2
+time_frame = 60
 
 @app.route('/upload', methods=['POST'])
 def upload_files():
@@ -27,6 +30,12 @@ def upload_files():
 
     user_resume_text = "\n".join([p.text for p in user_resume_docx.paragraphs])
     company_resume_text = "\n".join([p.text for p in company_resume_docx.paragraphs])
+
+    now=time()
+    calls_in_time_frame = [call for call in calls if call>now-time_frame]
+    if len(calls_in_time_frame) >= max_calls_per_minute:
+        return jsonify({"error": "Rate limit exceeded"}), 429
+    calls.append(now)
 
     prompt=f""" Rules:
         - Only fill fields if the field name exactly matches a key in userResume.

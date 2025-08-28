@@ -17,11 +17,13 @@ export const HomeSection = () => {
               id="user-resume-upload"
               name="user-resume-upload-word"
               accept=".doc,.docx"
+              required
             />
             <input
               type="file"
               id="company-resume-upload"
               name="company-resume-upload-word"
+              required
               accept=".doc,.docx"
             />
             <button type="submit">Upload</button>
