@@ -18,7 +18,7 @@ client = Groq(
     api_key=api_key
 )
 calls = []
-max_calls_per_minute = 2
+max_calls_per_minute = 5
 time_frame = 60
 
 @app.route('/upload', methods=['POST'])
